@@ -37,6 +37,27 @@ RUN mkdir -m 700 /root/.ssh; \
 # Override default config with custom PHP settings
 COPY docker-config/* $PHP_INI_DIR/conf.d/
 
+RUN apt-get update && \
+    apt-get -y install tzdata cron
+
+RUN cp /usr/share/zoneinfo/Europe/Rome /etc/localtime && \
+    echo "Europe/Rome" > /etc/timezone
+
+#RUN apt-get -y remove tzdata
+RUN rm -rf /var/cache/apk/*
+
+# Copy cron file to the cron.d directory
+COPY cron /etc/cron.d/cron
+
+# Give execution rights on the cron job
+RUN chmod 0644 /etc/cron.d/cron
+
+# Apply cron job
+RUN crontab /etc/cron.d/cron
+
+# Create the log file to be able to run tail
+RUN mkdir -p /var/log/cron
+
 FROM php-base AS php
 
 # Copy files
@@ -46,3 +67,6 @@ COPY / /var/www/
 RUN cd /var/www && composer install --no-dev && composer clear-cache
 
 EXPOSE 80
+
+# Add a command to base-image entrypont scritp
+RUN sed -i 's/^exec /service cron start\n\nexec /' /usr/local/bin/apache2-foreground
