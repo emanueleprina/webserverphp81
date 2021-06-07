@@ -66,7 +66,7 @@ COPY / /var/www/
 # Install Composer dependencies
 RUN cd /var/www && composer install --no-dev && composer clear-cache
 
-EXPOSE 80
+#EXPOSE 80
 
 # Add a command to base-image entrypont scritp
 RUN sed -i 's/^exec /service cron start\n\nexec /' /usr/local/bin/apache2-foreground
