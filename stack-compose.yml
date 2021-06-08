@@ -1,0 +1,22 @@
+version: '3'
+services:
+    webserver54:
+        image: webserver54cron
+        container_name: webserver54
+        ports:
+            - 12000:80
+        restart: always
+        volumes:
+            - /home/wwwroot:/var/www/html/vtiger
+        environment:
+            - TZ=Europe/Rome
+    webserver74:
+        image: webserver74cron
+        container_name: webserver74
+        ports:
+            - 6080:80
+        restart: always
+        volumes:
+            - /home/wwwroot:/var/www/src
+        environment:
+            - TZ=Europe/Rome
