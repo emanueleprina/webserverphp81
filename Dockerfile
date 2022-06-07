@@ -20,6 +20,10 @@ RUN docker-php-ext-install zip gd mysqli exif pdo pdo_mysql opcache intl soap
 # PHP Extensions - docker-php-ext-configure
 RUN docker-php-ext-configure intl
 
+# PHP Extensions - docker-php-ext-configure
+RUN docker-php-ext-configure calendar
+
+
 # PHP Tools
 RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && chmod +x wp-cli.phar && mv wp-cli.phar /usr/local/bin/wp
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && php composer-setup.php --install-dir=/usr/local/bin --filename=composer
