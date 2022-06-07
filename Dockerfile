@@ -42,7 +42,7 @@ RUN mkdir -m 700 /root/.ssh; \
 COPY docker-config/* $PHP_INI_DIR/conf.d/
 
 RUN apt-get update && \
-    apt-get -y install tzdata cron
+    apt-get -y install tzdata cron --allow-unauthenticated
 
 RUN cp /usr/share/zoneinfo/Europe/Rome /etc/localtime && \
     echo "Europe/Rome" > /etc/timezone
