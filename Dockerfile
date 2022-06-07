@@ -21,7 +21,7 @@ RUN docker-php-ext-install zip gd mysqli exif pdo pdo_mysql opcache intl soap
 RUN docker-php-ext-configure intl
 
 # PHP Extensions - docker-php-ext-configure
-RUN docker-php-ext-configure calendar
+RUN docker-php-ext-install calendar
 
 
 # PHP Tools
@@ -42,7 +42,7 @@ RUN mkdir -m 700 /root/.ssh; \
 COPY docker-config/* $PHP_INI_DIR/conf.d/
 
 RUN apt-get update && \
-    apt-get -y install tzdata cron --allow-unauthenticated
+    apt-get -y install tzdata cron
 
 RUN cp /usr/share/zoneinfo/Europe/Rome /etc/localtime && \
     echo "Europe/Rome" > /etc/timezone
