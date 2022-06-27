@@ -15,13 +15,17 @@ RUN apt-get update -y && apt-get install -y ssh libpng-dev libmagickwand-dev lib
 RUN pecl install imagick-3.4.4 memcached mcrypt-1.0.4 && docker-php-ext-enable imagick memcached mcrypt
 
 # PHP Extensions - docker-php-ext-install
-RUN docker-php-ext-install zip gd mysqli exif pdo pdo_mysql opcache intl soap
+RUN docker-php-ext-install zip mysqli exif pdo pdo_mysql opcache intl soap
 
 # PHP Extensions - docker-php-ext-configure
 RUN docker-php-ext-configure intl
 
 # PHP Extensions - docker-php-ext-configure
 RUN docker-php-ext-install calendar
+
+# PHP Extensions - docker-php-ext-configure
+RUN docker-php-ext-configure gd --with-freetype --with-jpeg && docker-php-ext-install -j$(nproc) gd
+
 
 
 # PHP Tools
