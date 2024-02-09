@@ -1,0 +1,3 @@
+APACHE + PHP 8.1 per RUKOVODITEL / ODYSSEY dalla versione 3.4 in poi
+
+all'interno della cartella, lanciare il comando #docker build -t [nome_immagine_desiderato] .
