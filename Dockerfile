@@ -1,7 +1,7 @@
 FROM php:8.1-apache-bullseye AS php-base
 
 # Dependencies
-RUN apt-get update -y && apt-get install -y tzdata cron ssh libpng-dev libjpeg-dev zlib1g-dev libzip-dev git unzip subversion ca-certificates libicu-dev libxml2-dev libmcrypt-dev && apt-get autoremove -y && apt-get clean && rm -rf /var/lib/apt/lists/
+RUN apt-get update -y && apt-get install -y tzdata cron ssh nano libpng-dev libjpeg-dev zlib1g-dev libzip-dev git unzip subversion ca-certificates libicu-dev libxml2-dev libmcrypt-dev && apt-get autoremove -y && apt-get clean && rm -rf /var/lib/apt/lists/
 
 # Install IMAGICK
 #RUN apt-get update -y && apt-get install -y libmagickwand-dev --no-install-recommends && rm -rf /var/lib/apt/lists/*
