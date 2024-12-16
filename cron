@@ -1,2 +1,2 @@
- 
+0 7 * * * /usr/local/bin/php -q /var/www/html/odyssey/cron/autostatus.php 
  
